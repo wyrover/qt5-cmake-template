@@ -53,15 +53,14 @@ set(FILES_TO_TRANSLATE ${UI_FILES} ${SRC_FILES})
 
 
 
-
+# 多语言文件定义
 set(TS_FILES
   translations/ar.ts  
   translations/zh_CN.ts
 )    
 
 
-
-
+# 生成多语言文件
 if (UPDATE_TRANSLATIONS)
   qt5_create_translation(${PROJECT_NAME}_QM_FILES ${FILES_TO_TRANSLATE} ${TS_FILES})
 else() 
@@ -71,7 +70,7 @@ endif()
 
 
 
-
+# 将多语言文件嵌入资源
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc.in"
 "<!DOCTYPE RCC>
 <RCC version=\"1.0\">
@@ -93,7 +92,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E copy_if_different
 
 
 
-# Generate rules for building source files from the resources
+# 添加资源文件
 qt5_add_resources(QRCS 
   resources.qrc
   #${CMAKE_CURRENT_BINARY_DIR}/translations.qrc
